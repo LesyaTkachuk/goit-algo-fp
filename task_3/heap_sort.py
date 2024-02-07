@@ -11,4 +11,8 @@ def heap_sort(iterable, descending=False):
         heapq.heappush(heap, el * sign)
 
     # get elements from the heap with updated values and form sorted array
-    return [sign * heapq.heappop(h) for _ in range(len(heap))]
+    return [sign * heapq.heappop(heap) for _ in range(len(heap))]
+
+if __name__=="__main__":
+    result=heap_sort([4,13,2,14,7,10,5])
+    print(result)

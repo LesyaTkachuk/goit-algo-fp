@@ -1,12 +1,11 @@
 from task_2.pythagoras_tree import draw_pythagoras_tree
 from utils import print_red
+from utils.constants import BLUE, RESET
 
 
 def main():
     recursion_number = input(
-        "\033[38;2;0;100;200m"
-        + "To draw the Pythagorath tree enter the number of recursion: "
-        + "\033[0m"
+        BLUE + "To draw the Pythagorath tree enter the number of recursion: " + RESET
     )
     try:
         draw_pythagoras_tree(int(recursion_number))
