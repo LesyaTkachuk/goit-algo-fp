@@ -19,6 +19,9 @@ class Heap:
     def __init__(self):
         self.heap = []
 
+    def __str__(self):
+        return f"Heap: {self.heap}"
+
     def push(self, elem):
         heapq.heappush(self.heap, elem)
 
@@ -78,7 +81,7 @@ def draw_heap(tree_root):
     }  # Використовуйте значення вузла для міток
 
     plt.figure(figsize=(9, 6))
-    plt.title("Heap tree")
+    plt.title("Heap - Complete Binary Tree")
     nx.draw(
         tree, pos=pos, labels=labels, arrows=False, node_size=2500, node_color=colors
     )
@@ -91,7 +94,9 @@ if __name__ == "__main__":
     array = [7, 12, 3, 5, 2, 15, 8, 11, 4, 20, 1, 6, 9, 14]
     for el in array:
         heap.push(el)
-    print("Heap: ", heap.heap)
+
+    print("Array: ", array)
+    print(heap)
 
     # form heap tree
     root = heap.make_tree()

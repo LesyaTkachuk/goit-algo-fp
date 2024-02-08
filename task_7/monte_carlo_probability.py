@@ -65,6 +65,6 @@ if __name__ == "__main__":
     print("*" * 100)
 
     # draw bar for obtained probabilities
-    draw_bar(result_36, "Probability bar for 36 experiments")
-    draw_bar(result_1000, "Probability bar for 1000 experiments")
-    draw_bar(result_100000, "Probability bar for 100000 experiments")
+    draw_bar(result_36, "Probability distribution for 36 experiments")
+    draw_bar(result_1000, "Probability distribution for 1000 experiments")
+    draw_bar(result_100000, "Probability distribution for 100000 experiments")

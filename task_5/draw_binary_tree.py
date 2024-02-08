@@ -3,7 +3,10 @@ import uuid
 import networkx as nx
 import matplotlib.colors as mplt_colors
 import matplotlib.pyplot as plt
-from queue import Queue
+
+from deep_first_search import deep_first_search
+from breadth_first_search import breadth_first_search
+
 
 COLORS = [
     "#041259",
@@ -51,63 +54,10 @@ def add_edges(graph, node, pos, x=0, y=0, layer=1):
     return graph
 
 
-def deep_first_search(root):
-    root_vertex = root
-    visited = list()
-
-    # use stack to store the vertexes
-    stack = [root_vertex]
-
-    while stack:
-        # get vertex from the stack
-        vertex = stack.pop()
-
-        if vertex.val not in visited:
-            # add vertex to the visited
-            visited.append(vertex.val)
-
-            # add vertexes to the stack
-            if vertex.right:
-                stack.append(vertex.right)
-            if vertex.left:
-                stack.append(vertex.left)
-
-    return visited
-
-
-def breadth_first_search(root):
-    root_vertex = root
-    # initialise list of visited vertexes
-    visited = list()
-
-    # initialise queue and add root vertex to it
-    vertexes_queue = Queue()
-    vertexes_queue.put(root_vertex)
-
-    # move between vertexes untill queue is not empty
-    while not vertexes_queue.empty():
-        # get first vertex from the queue
-        vertex = vertexes_queue.get()
-
-        # check is this vertex in visited
-        if vertex.val not in visited:
-            # add this vertex to the visited
-            visited.append(vertex.val)
-            # add unvisited child nodes to the queue
-            if vertex.left:
-                vertexes_queue.put(vertex.left)
-            if vertex.right:
-                vertexes_queue.put(vertex.right)
-
-    return visited
-
-
-def draw_tree(tree_root, search_func=None, title="Binary Tree Visualisation"):
+def draw_binary_tree(tree_root, search_func=None, title="Binary Tree Visualisation"):
     tree = nx.DiGraph()
     pos = {tree_root.id: (0, 0)}
     tree = add_edges(tree, tree_root, pos)
-
-    print("Tree nodes", tree.nodes(data=True))
 
     if search_func:
         visited_nodes = search_func(tree_root)
@@ -155,10 +105,10 @@ result = breadth_first_search(root)
 print("Breadth first search: ", result)
 
 # Draw Binary Tree
-draw_tree(root)
+draw_binary_tree(root)
 
 # Deep First Search Visualisation
-draw_tree(root, deep_first_search, "Deep First Search Visualisation")
+draw_binary_tree(root, deep_first_search, "Deep First Search Visualisation")
 
 # Breadth First Search Visualisation
-draw_tree(root, breadth_first_search, "Breadth First Search Visualisation")
+draw_binary_tree(root, breadth_first_search, "Breadth First Search Visualisation")

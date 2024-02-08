@@ -1,5 +1,10 @@
 import turtle
 
+from print_red import print_red
+
+BLUE = "\033[38;2;0;100;200m"
+RESET = "\033[0m"
+
 
 def pythagoras_tree(level, branch_length=100, angle=45, width_factor=0.75):
     if level == 0:
@@ -42,5 +47,18 @@ def draw_pythagoras_tree(n):
     turtle.done()
 
 
+def ask_level_of_recursion():
+    recursion_number = input(
+        BLUE + "To draw the Pythagorath tree enter the number of recursion: " + RESET
+    )
+    try:
+        draw_pythagoras_tree(int(recursion_number))
+    except ValueError:
+        print_red("\033[91m" + "Recursion number should be an integer!" + "\033[0m")
+        ask_level_of_recursion()
+
+
 if __name__ == "__main__":
-    draw_pythagoras_tree(8)
+    # draw_pythagoras_tree(6)
+    ask_level_of_recursion()
+    
